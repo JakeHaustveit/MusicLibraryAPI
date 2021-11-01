@@ -1,4 +1,5 @@
 from django.db import models
+from django.db.models.fields import IntegerField
 
 # Create your models here.from django.db import models
 
@@ -8,4 +9,4 @@ class Song(models.Model):
     artist = models.CharField(max_length=50)
     album = models.CharField(max_length=50)
     release_date = models.DateField()
-    likes= models. IntegerField()
+    likes= models.IntegerField(+1)
