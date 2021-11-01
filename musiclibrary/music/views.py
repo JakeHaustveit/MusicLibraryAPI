@@ -1,7 +1,4 @@
-from django.shortcuts import render
-from rest_framework.serializers import Serializer
-
-from musiclibrary.music.models import Song
+from .models import Song
 from .serializers import SongSerializer
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -10,13 +7,13 @@ from rest_framework import status
 
 class SongList(APIView):
 
-    def get(self,request):
+    def get(self, request):
         song = Song.objects.all()
         serializer= SongSerializer(song, many=True)
         return Response(serializer.data)
 
     def post(self, request):
-        serializer = SongSerializer(data=request.data)
+        serializer = SongSerializer(data= request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
